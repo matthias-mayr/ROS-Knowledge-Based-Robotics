@@ -4,7 +4,7 @@ RUN mkdir -p /colcon_ws/src
 ENV WS=/colcon_ws
 ENV SRC=$WS/src
 WORKDIR $SRC
-RUN apt update && apt install -y python3-pip curl git wget gpg psmisc
+RUN apt update && apt install -y python3-pip curl git wget gpg psmisc software-properties-common
 
 ### KANT
 # Adapted instructions from https://github.com/uleroboticsgroup/kant
@@ -32,6 +32,10 @@ RUN git clone https://github.com/uleroboticsgroup/simple_node.git
 # Temporary fix for the kant repository until the PR is merged:
 RUN git clone --branch fix/humble-jammy https://github.com/matthias-mayr/kant.git
 
+### Potassco
+RUN add-apt-repository ppa:potassco/stable -y
+RUN apt update && apt install -y clingo
+RUN pip install clingo
 
 # Build the workspace
 
