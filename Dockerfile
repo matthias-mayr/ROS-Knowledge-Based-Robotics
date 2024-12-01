@@ -32,14 +32,26 @@ RUN git clone https://github.com/uleroboticsgroup/simple_node.git
 # Temporary fix for the kant repository until the PR is merged:
 RUN git clone --branch fix/humble-jammy https://github.com/matthias-mayr/kant.git
 
-### Potassco
-RUN add-apt-repository ppa:potassco/stable -y
-RUN apt update && apt install -y clingo
-RUN pip install clingo
+### Knowrob
+RUN apt install -y libboost-program-options-dev libboost-serialization-dev libboost-python-dev
+RUN sudo apt-add-repository -y ppa:swi-prolog/stable && sudo apt update && sudo apt install -y swi-prolog libraptor2-dev libmongoc-dev librdf0-dev
+WORKDIR ${WS}
+RUN git clone https://github.com/knowrob/knowrob && mkdir -p knowrob/build
+WORKDIR ${WS}/knowrob/build
+RUN cmake -DCATKIN=OFF -DPYTHON_MODULE_LIBDIR="dist-packages" ..
+WORKDIR ${WS}/knowrob
+RUN make -j4 && make install
+
+# SWI-Prolog client for ROS2
+WORKDIR $SRC
+RUN apt install -y ros-humble-turtlesim
+# Fork with adaption to ROS2 Galactic of main repo (https://github.com/SWI-Prolog/rclswi)
+RUN git clone --branch galactic-devel https://github.com/guillaumeautran/rclswi/
 
 # Build the workspace
 
 WORKDIR $WS
+RUN rosdep install --from-paths src --ignore-src --rosdistro=$ROS_DISTRO -y
 RUN . /opt/ros/humble/setup.sh && colcon build --symlink-install
 RUN echo "source $WS/install/setup.bash" >> /root/.bashrc
 ENTRYPOINT ["/bin/bash"]
