@@ -11,12 +11,12 @@ docker build -t knowledge-based-ros .
 
 ### KANT (Knowledge mAnagemeNT) for ROS 2
 
-**Example**
+**Example:**  
 In the login shell run this example in which the python file does not provide any output
 ```sh
 # MongoDB in the background
 mongod &
-python3 src/kant/kant/kant_dao/kant_dao/example_node.py
+python3 src/merlin2/kant/kant_dao/kant_dao/example_node.py
 # Tear down MongoDB
 killall mongod
 ```

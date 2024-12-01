@@ -6,12 +6,6 @@ ENV SRC=$WS/src
 WORKDIR $SRC
 RUN apt update && apt install -y python3-pip curl git wget gpg psmisc software-properties-common
 
-# ### KANT
-# KANT itself is installed as a submodule in the MERLIN 2 repository
-RUN mkdir -p $SRC/kant
-# Clone the example repository
-RUN git clone https://github.com/uleroboticsgroup/simple_node.git $SRC/kant/simple_node
-
 ### Potassco
 RUN add-apt-repository ppa:potassco/stable -y
 RUN apt update && apt install -y clingo
@@ -58,6 +52,7 @@ RUN git clone --branch ros2 https://github.com/RobotLabLTH/skiros2_std_lib
 WORKDIR $SRC
 
 ### MERLIN 2
+## KANT is installed as a submodule in the MERLIN 2 repository
 RUN git clone --recurse-submodules https://github.com/MERLIN2-ARCH/merlin2.git
 WORKDIR $SRC/merlin2
 # SMTPlan+, sst, mongo dependencies
