@@ -67,3 +67,11 @@ Ontologenius features a [Python Tutorial](https://sarthou.github.io/ontologenius
 A very good introduction into SkiROS2 is the Docker container for the ['Hands-On with ROS 2 Deliberation Technologies' at ROSCon 2024](https://github.com/ros-wg-delib/roscon24-workshop).
 
 There is a [dedicated introduction into using SkiROS2 with pyrobosim](https://github.com/matthias-mayr/skiros2_pyrobosim_lib) as part of this workshop that also briefly explains SkiROS2.
+
+### MERLIN 2
+
+> MERLIN 2 (MachinEd Ros pLanINg) is a cognitive architecture for robots based on ROS 2. It is aimed to be used to generate behaviors in robots using PDDL planners and state machines from YASMIN (Yet Another State MachINe) . PDDL can be manageg using KANT (Knowledge mAnagemeNT).
+
+**Examples:**  
+* [PDDL example for creating a new action](https://merlin2.readthedocs.io/en/latest/Creating%20New%20Actions.html#)
+* [Navigation demos with a simulated robot](https://merlin2.readthedocs.io/en/latest/Demos.html#) - Dependencies not installed in docker
