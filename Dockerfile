@@ -39,11 +39,10 @@ WORKDIR ${WS}
 RUN git clone https://github.com/knowrob/knowrob && mkdir -p knowrob/build
 WORKDIR ${WS}/knowrob/build
 RUN cmake -DCATKIN=OFF -DPYTHON_MODULE_LIBDIR="dist-packages" ..
-WORKDIR ${WS}/knowrob
-RUN make -j4 && make install
-
-# SWI-Prolog client for ROS2
+RUN make -j8 && make install
 WORKDIR $SRC
+
+## SWI-Prolog client for ROS2
 RUN apt install -y ros-humble-turtlesim
 # Fork with adaption to ROS2 Galactic of main repo (https://github.com/SWI-Prolog/rclswi)
 RUN git clone --branch galactic-devel https://github.com/guillaumeautran/rclswi/
