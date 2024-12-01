@@ -32,15 +32,12 @@ RUN git clone https://github.com/uleroboticsgroup/simple_node.git
 # Temporary fix for the kant repository until the PR is merged:
 RUN git clone --branch fix/humble-jammy https://github.com/matthias-mayr/kant.git
 
-### KnowledgeCore
-RUN pip3 install rdflib reasonable pykb && mkdir -p $SRC/knowledge_core
-WORKDIR $SRC/knowledge_core
-RUN git clone https://github.com/pal-robotics/kb_msgs
-RUN git clone https://github.com/severin-lemaignan/knowledge_core.git
-WORKDIR $SRC/knowledge_core/knowledge_core
-RUN python3 setup.py install && touch COLCON_IGNORE
-RUN echo 'export PATH=$PATH:/usr/lib/knowledge_core' >> ~/.bashrc
-WORKDIR $SRC
+
+
+### Ontologenius
+RUN apt install -y ros-cmake-modules ros-humble-libcurl-vendor qtbase5-dev libopencv-dev
+RUN git clone https://github.com/sarthou/ontologenius
+
 
 ### Build the workspace
 WORKDIR $WS

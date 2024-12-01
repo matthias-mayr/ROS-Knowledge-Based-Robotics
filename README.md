@@ -51,3 +51,10 @@ knowledge_core&
 ```
 Example with `pykb`: https://github.com/severin-lemaignan/pykb
 
+### Ontologenius
+
+> Ontologenius is a research project aimed at providing what can be seen as a semantic memory for artificial agents. Focusing only on this task, Ontologenius is currently a robust and efficient open-source software that can be deployed in many applications.
+
+**Examples**
+
+Ontologenius features a [Python Tutorial](https://sarthou.github.io/ontologenius/python_Tutorials/Tutorials.html) and a [C++ Tutorial](https://sarthou.github.io/ontologenius/cpp_Tutorials/Tutorials.html).
