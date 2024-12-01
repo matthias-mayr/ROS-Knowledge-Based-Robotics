@@ -32,30 +32,20 @@ RUN git clone https://github.com/uleroboticsgroup/simple_node.git
 # Temporary fix for the kant repository until the PR is merged:
 RUN git clone --branch fix/humble-jammy https://github.com/matthias-mayr/kant.git
 
-### Knowrob
-RUN apt install -y libboost-program-options-dev libboost-serialization-dev libboost-python-dev
-RUN sudo apt-add-repository -y ppa:swi-prolog/stable && sudo apt update && sudo apt install -y swi-prolog libraptor2-dev libmongoc-dev librdf0-dev
-WORKDIR ${WS}
-RUN git clone https://github.com/knowrob/knowrob && mkdir -p knowrob/build
-WORKDIR ${WS}/knowrob/build
-RUN cmake -DCATKIN=OFF -DPYTHON_MODULE_LIBDIR="dist-packages" ..
-RUN make -j8 && make install
+### KnowledgeCore
+RUN pip3 install rdflib reasonable pykb && mkdir -p $SRC/knowledge_core
+WORKDIR $SRC/knowledge_core
+RUN git clone https://github.com/pal-robotics/kb_msgs
+RUN git clone https://github.com/severin-lemaignan/knowledge_core.git
+WORKDIR $SRC/knowledge_core/knowledge_core
+RUN python3 setup.py install && touch COLCON_IGNORE
+RUN echo 'export PATH=$PATH:/usr/lib/knowledge_core' >> ~/.bashrc
 WORKDIR $SRC
 
-## SWI-Prolog client for ROS2
-RUN apt install -y ros-humble-turtlesim
-# Fork with adaption to ROS2 Galactic of main repo (https://github.com/SWI-Prolog/rclswi)
-RUN git clone --branch galactic-devel https://github.com/guillaumeautran/rclswi/
-
-### PlanSys2
-RUN sudo apt install -y ros-humble-plansys2-* ros-humble-test-msgs
-RUN git clone -b humble https://github.com/IntelligentRoboticsLabs/ros2_planning_system_examples plansys2_examples
-
-
-# Build the workspace
-
+### Build the workspace
 WORKDIR $WS
-RUN rosdep install --from-paths src --ignore-src --rosdistro=$ROS_DISTRO -y
+# Install dependencies. Skipping 'python3-reasonable' comes from KnowledgeCore
+RUN rosdep install --from-paths src --ignore-src --rosdistro=$ROS_DISTRO -y --skip-keys python3-reasonable
 RUN . /opt/ros/humble/setup.sh && colcon build --symlink-install
 RUN echo "source $WS/install/setup.bash" >> /root/.bashrc
 ENTRYPOINT ["/bin/bash"]

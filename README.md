@@ -40,3 +40,14 @@ They can be executed from the workspace root, so `/colcon_ws`
 
 **Examples**
 A set of examples that come from the project are cloned into `/colcon_ws/src/plansys2_examples`
+
+### KnowledgeCore
+> KnowledgeCore is a RDFlib-backed minimalistic knowledge base, initially designed for robots (in particular human-robot interaction or multi-robot interaction).
+
+**Examples**
+To start the knowledge base as a server, simply type:
+```shell
+knowledge_core&
+```
+Example with `pykb`: https://github.com/severin-lemaignan/pykb
+
