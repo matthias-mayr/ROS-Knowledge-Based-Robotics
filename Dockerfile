@@ -38,6 +38,12 @@ RUN git clone --branch fix/humble-jammy https://github.com/matthias-mayr/kant.gi
 RUN apt install -y ros-cmake-modules ros-humble-libcurl-vendor qtbase5-dev libopencv-dev
 RUN git clone https://github.com/sarthou/ontologenius
 
+### SkiROS2
+RUN mkdir SkiROS2
+WORKDIR $SRC/SkiROS2
+RUN git clone --branch ros2 https://github.com/RobotLabLTH/SkiROS2
+RUN git clone --branch ros2 https://github.com/RobotLabLTH/skiros2_std_lib
+WORKDIR $SRC
 
 ### Build the workspace
 WORKDIR $WS

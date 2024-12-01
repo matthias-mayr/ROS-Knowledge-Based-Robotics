@@ -58,3 +58,12 @@ Example with `pykb`: https://github.com/severin-lemaignan/pykb
 **Examples**
 
 Ontologenius features a [Python Tutorial](https://sarthou.github.io/ontologenius/python_Tutorials/Tutorials.html) and a [C++ Tutorial](https://sarthou.github.io/ontologenius/cpp_Tutorials/Tutorials.html).
+
+### SkiROS2
+
+> SkiROS2 is a platform to create complex robot behaviors by composing skills - modular software blocks - into behavior trees. SkiROS offers the following features: A world model as a semantic database to manage environmental knowledge. Reasoning capabilities and automatic inference of skill parameters. An integration point for PDDL task planning
+
+**Examples:**  
+A very good introduction into SkiROS2 is the Docker container for the ['Hands-On with ROS 2 Deliberation Technologies' at ROSCon 2024](https://github.com/ros-wg-delib/roscon24-workshop).
+
+There is a [dedicated introduction into using SkiROS2 with pyrobosim](https://github.com/matthias-mayr/skiros2_pyrobosim_lib) as part of this workshop that also briefly explains SkiROS2.
