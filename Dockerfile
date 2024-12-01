@@ -47,6 +47,11 @@ RUN apt install -y ros-humble-turtlesim
 # Fork with adaption to ROS2 Galactic of main repo (https://github.com/SWI-Prolog/rclswi)
 RUN git clone --branch galactic-devel https://github.com/guillaumeautran/rclswi/
 
+### PlanSys2
+RUN sudo apt install -y ros-humble-plansys2-* ros-humble-test-msgs
+RUN git clone -b humble https://github.com/IntelligentRoboticsLabs/ros2_planning_system_examples plansys2_examples
+
+
 # Build the workspace
 
 WORKDIR $WS
