@@ -12,10 +12,10 @@ RUN apt update && apt install -y clingo
 RUN pip install clingo
 
 ### Knowrob
-RUN apt install -y libboost-program-options-dev libboost-serialization-dev libboost-python-dev
+RUN apt install -y libboost-dev libboost-program-options-dev libboost-serialization-dev libboost-python-dev
 RUN sudo apt-add-repository -y ppa:swi-prolog/stable && sudo apt update && sudo apt install -y swi-prolog libraptor2-dev libmongoc-dev librdf0-dev
 WORKDIR ${WS}
-RUN git clone https://github.com/knowrob/knowrob && mkdir -p knowrob/build
+RUN git clone https://github.com/knowrob/knowrob && mkdir -p knowrob/build && touch knowrob/COLCON_IGNORE
 WORKDIR ${WS}/knowrob/build
 RUN cmake -DCATKIN=OFF -DPYTHON_MODULE_LIBDIR="dist-packages" ..
 RUN make -j8 && make install
